@@ -9,11 +9,11 @@ public class TestScroll {
 				e.printStackTrace();
 			}
 			Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:ORCL", "scott", "tiger");
-			Statement smt=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,									//ÉèÖÃ¹ö¶¯²»Ãô¸Ğ
+			Statement smt=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,									//è®¾ç½®ç»“æœé›†ä¸ºåªè¯»æ»šåŠ¨çš„
 					ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs=smt.executeQuery("select * from emp order by sal");
 			rs.next();
-			System.out.println(rs.getInt(1));	                                                                   //È¡µÚÒ»ÁĞÊı¾İ
+			System.out.println(rs.getInt(1));	                                                                   //è·å¾—ç¬¬ä¸€ä¸ªå­—æ®µçš„å€¼
 			rs.last();
 			System.out.println(rs.getString(1));
 			System.out.println(rs.isLast());
@@ -21,7 +21,7 @@ public class TestScroll {
 			System.out.println(rs.getRow());
 			rs.previous();	
 			System.out.println(rs.getInt(1));
-			rs.absolute(6);																						//È¡µÚ6ĞĞÊı¾İ
+			rs.absolute(6);																						
 			System.out.println(rs.getInt(1));
 			rs.close();
 			smt.close();

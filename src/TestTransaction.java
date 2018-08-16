@@ -7,20 +7,20 @@ public class TestTransaction {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn=DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:ORCL", "scott", "tiger");
-			conn.setAutoCommit(false); 																		//将自动提交设置为false
+			conn.setAutoCommit(false); 																		//鑷姩鎻愪氦璁剧疆涓篺alse
 			smt=conn.createStatement();
 			smt.addBatch("insert into dept2 values(1,'Game','bj')");
 			smt.addBatch("insert into dept2 values(2,'Game','bj')");
 			smt.addBatch("insert into dept2 values(3,'Game','bj')");
 			smt.executeBatch();
-			conn.commit();																					//手动进行提交 
-			conn.setAutoCommit(true); 																		//将自动提交设置回来														  
+			conn.commit();																					//鎵嬪姩杩涜鎻愪氦
+			conn.setAutoCommit(true); 																		//鎭㈠鐜板満														  
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}catch(SQLException e){
 			if(conn!=null) {
 				try {
-					conn.rollback();																		//出错后进行回滚
+					conn.rollback();																		//鍥炴粴
 					conn.setAutoCommit(true);
 				} catch (SQLException e1) {
 					e1.printStackTrace();

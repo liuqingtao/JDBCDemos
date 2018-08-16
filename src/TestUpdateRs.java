@@ -7,28 +7,28 @@ public class TestUpdateRs {
 		try {
 			new  oracle.jdbc.driver.OracleDriver();
 			Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:ORCL", "scott", "tiger");
-			Statement smt=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,									//ÉèÖÃ¹ö¶¯²»Ãô¸Ğ
-					ResultSet.CONCUR_UPDATABLE);																	//ÉèÖÃ¸üĞÂÊ±¿ÉĞ´
+			Statement smt=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,									//è®¾ç½®ä¸ºå¯æ»šåŠ¨
+					ResultSet.CONCUR_UPDATABLE);																	//è®¾ç½®ä¸ºå¯æ›´æ–°
 			ResultSet rs=smt.executeQuery(
-					"select empno,ename,job,mgr,hiredate,sal,comm,deptno from emp2");								//²»ÄÜÊ¹ÓÃselect *		
+					"select empno,ename,job,mgr,hiredate,sal,comm,deptno from emp2");								//ä¸èƒ½ä½¿ç”¨select *		
 			rs.next();
-			//¸üĞÂÒ»ĞĞÊı¾İ
+			//æ›´æ–°ä¸€è¡Œæ•°æ®
 			rs.updateString("ename","AAAA");
 			rs.updateRow();
-			//²åÈëĞÂĞĞ
+			//æ’å…¥æ–°è¡Œ
 			rs.moveToInsertRow();
 			rs.updateInt(1,9999);
 			rs.updateString("ename","AAAA");
 			rs.updateInt("mgr",7839);
 			rs.updateDouble("sal",99.99);
 			rs.insertRow();
-			//½«¹â±êÒÆ¶¯µ½ĞÂ½¨ĞĞ
+			//å°†å…‰æ ‡ç§»åŠ¨åˆ°æ–°å»ºçš„è¡Œ
 			rs.moveToCurrentRow();
-			//É¾³ıĞĞ
+			//åˆ é™¤è¡Œ
 			rs.absolute(5);
 			rs.deleteRow();
 			
-			//È¡Ïû¸üĞÂ
+			//å–æ¶ˆæ›´æ–°
 			//rs.cancelRowUpdates();
 			rs.close();
 			smt.close();
